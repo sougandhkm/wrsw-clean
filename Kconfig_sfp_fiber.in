@@ -3,7 +3,7 @@ menu "SFP and Media Timing Configuration"
 config N_SFP_ENTRIES
 	int "Number of SFP entries in SFP configuration DB"
 	range 0  18
-	default  6
+	default  8
 	help
 	This parameter defines the number of SFP entries
 	that can be set in the configuration database
@@ -35,7 +35,7 @@ config SFP00_PARAMS
 config SFP01_PARAMS
 	string "Parameters for SFP 1"
 	depends on  N_SFP_ENTRIES=2 || N_SFP_ENTRIES=3 || N_SFP_ENTRIES=4 || N_SFP_ENTRIES=5 || N_SFP_ENTRIES=6 || N_SFP_ENTRIES=7 || N_SFP_ENTRIES=8 || N_SFP_ENTRIES=9 || N_SFP_ENTRIES=10 || N_SFP_ENTRIES=11 || N_SFP_ENTRIES=12 || N_SFP_ENTRIES=13 || N_SFP_ENTRIES=14 || N_SFP_ENTRIES=15 || N_SFP_ENTRIES=16 || N_SFP_ENTRIES=17 || N_SFP_ENTRIES=18
-	default "vn=Axcen Photonics,pn=AXGE-3454-0531,tx=0,rx=0,wl_txrx=1490+1310"
+	default "vn=Axcen Photonics,pn=AXGE-3454-0531,tx=34,rx=-4,wl_txrx=1490+1310"
 	help
 	This parameter, and the following ones, are used to
 	configure the timing parameters of a specific SFP
@@ -140,7 +140,7 @@ config SFP05_PARAMS
 config SFP06_PARAMS
 	string "Parameters for SFP 6"
 	depends on  N_SFP_ENTRIES=7 || N_SFP_ENTRIES=8 || N_SFP_ENTRIES=9 || N_SFP_ENTRIES=10 || N_SFP_ENTRIES=11 || N_SFP_ENTRIES=12 || N_SFP_ENTRIES=13 || N_SFP_ENTRIES=14 || N_SFP_ENTRIES=15 || N_SFP_ENTRIES=16 || N_SFP_ENTRIES=17 || N_SFP_ENTRIES=18
-	default ""
+	default "vn=Axcen Photonics,pn=AXGD-1254-0531,tx=0,rx=0,wl_txrx=1310+1490"
 	help
 	This parameter, and the following ones, are used to
 	configure the timing parameters of a specific SFP
@@ -161,7 +161,7 @@ config SFP06_PARAMS
 config SFP07_PARAMS
 	string "Parameters for SFP 7"
 	depends on  N_SFP_ENTRIES=8 || N_SFP_ENTRIES=9 || N_SFP_ENTRIES=10 || N_SFP_ENTRIES=11 || N_SFP_ENTRIES=12 || N_SFP_ENTRIES=13 || N_SFP_ENTRIES=14 || N_SFP_ENTRIES=15 || N_SFP_ENTRIES=16 || N_SFP_ENTRIES=17 || N_SFP_ENTRIES=18
-	default ""
+	default "vn=Axcen Photonics,pn=AXGD-3454-0531,tx=34,rx=-4,wl_txrx=1490+1310"
 	help
 	This parameter, and the following ones, are used to
 	configure the timing parameters of a specific SFP

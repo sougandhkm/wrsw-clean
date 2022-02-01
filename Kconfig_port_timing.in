@@ -117,19 +117,19 @@ endchoice
 
 config PORT01_INST01_EGRESS_LATENCY
     int "timestampCorrectionPortDS.egressLatency (ps)"
-    default 238903
+    default 233519 
  help
 	 Defines the transmission constant delay (ps)
 
 config PORT01_INST01_INGRESS_LATENCY
     int "timestampCorrectionPortDS.ingressLatency (ps)"
-    default 275901
+    default 283479
  help
 	 Defines the reception constant delay (ps)
 
 config PORT01_INST01_T24P_TRANS_POINT
     int "timestampCorrectionPortDS.t24p_trans_point (ps)"
-    default 13600
+    default 13900
  help
 	 Defines the phase transition point for reception timestamps t2/t4 (ps)
 
@@ -288,19 +288,19 @@ endchoice
 
 config PORT02_INST01_EGRESS_LATENCY
     int "timestampCorrectionPortDS.egressLatency (ps)"
-    default 239923
+    default 234691
  help
 	 Defines the transmission constant delay (ps)
 
 config PORT02_INST01_INGRESS_LATENCY
     int "timestampCorrectionPortDS.ingressLatency (ps)"
-    default 278835
+    default 285218
  help
 	 Defines the reception constant delay (ps)
 
 config PORT02_INST01_T24P_TRANS_POINT
     int "timestampCorrectionPortDS.t24p_trans_point (ps)"
-    default 10800
+    default 12550
  help
 	 Defines the phase transition point for reception timestamps t2/t4 (ps)
 
@@ -459,19 +459,19 @@ endchoice
 
 config PORT03_INST01_EGRESS_LATENCY
     int "timestampCorrectionPortDS.egressLatency (ps)"
-    default 238566
+    default 233660
  help
 	 Defines the transmission constant delay (ps)
 
 config PORT03_INST01_INGRESS_LATENCY
     int "timestampCorrectionPortDS.ingressLatency (ps)"
-    default 277396
+    default 282758
  help
 	 Defines the reception constant delay (ps)
 
 config PORT03_INST01_T24P_TRANS_POINT
     int "timestampCorrectionPortDS.t24p_trans_point (ps)"
-    default 13650
+    default 14800
  help
 	 Defines the phase transition point for reception timestamps t2/t4 (ps)
 
@@ -630,19 +630,19 @@ endchoice
 
 config PORT04_INST01_EGRESS_LATENCY
     int "timestampCorrectionPortDS.egressLatency (ps)"
-    default 239491
+    default 234603
  help
 	 Defines the transmission constant delay (ps)
 
 config PORT04_INST01_INGRESS_LATENCY
     int "timestampCorrectionPortDS.ingressLatency (ps)"
-    default 277469
+    default 283099
  help
 	 Defines the reception constant delay (ps)
 
 config PORT04_INST01_T24P_TRANS_POINT
     int "timestampCorrectionPortDS.t24p_trans_point (ps)"
-    default 12150
+    default 14500
  help
 	 Defines the phase transition point for reception timestamps t2/t4 (ps)
 
@@ -801,19 +801,19 @@ endchoice
 
 config PORT05_INST01_EGRESS_LATENCY
     int "timestampCorrectionPortDS.egressLatency (ps)"
-    default 238040
+    default 233979
  help
 	 Defines the transmission constant delay (ps)
 
 config PORT05_INST01_INGRESS_LATENCY
     int "timestampCorrectionPortDS.ingressLatency (ps)"
-    default 277694
+    default 283411
  help
 	 Defines the reception constant delay (ps)
 
 config PORT05_INST01_T24P_TRANS_POINT
     int "timestampCorrectionPortDS.t24p_trans_point (ps)"
-    default 13550
+    default 14350
  help
 	 Defines the phase transition point for reception timestamps t2/t4 (ps)
 
@@ -972,19 +972,19 @@ endchoice
 
 config PORT06_INST01_EGRESS_LATENCY
     int "timestampCorrectionPortDS.egressLatency (ps)"
-    default 237334
+    default 233330
  help
 	 Defines the transmission constant delay (ps)
 
 config PORT06_INST01_INGRESS_LATENCY
     int "timestampCorrectionPortDS.ingressLatency (ps)"
-    default 277146
+    default 282884
  help
 	 Defines the reception constant delay (ps)
 
 config PORT06_INST01_T24P_TRANS_POINT
     int "timestampCorrectionPortDS.t24p_trans_point (ps)"
-    default 14500
+    default 15050
  help
 	 Defines the phase transition point for reception timestamps t2/t4 (ps)
 
@@ -1143,19 +1143,19 @@ endchoice
 
 config PORT07_INST01_EGRESS_LATENCY
     int "timestampCorrectionPortDS.egressLatency (ps)"
-    default 237543
+    default 234244
  help
 	 Defines the transmission constant delay (ps)
 
 config PORT07_INST01_INGRESS_LATENCY
     int "timestampCorrectionPortDS.ingressLatency (ps)"
-    default 278371
+    default 283030
  help
 	 Defines the reception constant delay (ps)
 
 config PORT07_INST01_T24P_TRANS_POINT
     int "timestampCorrectionPortDS.t24p_trans_point (ps)"
-    default 13950
+    default 15150
  help
 	 Defines the phase transition point for reception timestamps t2/t4 (ps)
 
@@ -1314,19 +1314,19 @@ endchoice
 
 config PORT08_INST01_EGRESS_LATENCY
     int "timestampCorrectionPortDS.egressLatency (ps)"
-    default 237687
+    default 234380
  help
 	 Defines the transmission constant delay (ps)
 
 config PORT08_INST01_INGRESS_LATENCY
     int "timestampCorrectionPortDS.ingressLatency (ps)"
-    default 278687
+    default 284338
  help
 	 Defines the reception constant delay (ps)
 
 config PORT08_INST01_T24P_TRANS_POINT
     int "timestampCorrectionPortDS.t24p_trans_point (ps)"
-    default 14450
+    default 13900
  help
 	 Defines the phase transition point for reception timestamps t2/t4 (ps)
 
@@ -1485,19 +1485,19 @@ endchoice
 
 config PORT09_INST01_EGRESS_LATENCY
     int "timestampCorrectionPortDS.egressLatency (ps)"
-    default 238676
+    default 236143
  help
 	 Defines the transmission constant delay (ps)
 
 config PORT09_INST01_INGRESS_LATENCY
     int "timestampCorrectionPortDS.ingressLatency (ps)"
-    default 278256
+    default 284183
  help
 	 Defines the reception constant delay (ps)
 
 config PORT09_INST01_T24P_TRANS_POINT
     int "timestampCorrectionPortDS.t24p_trans_point (ps)"
-    default 14750
+    default 14200
  help
 	 Defines the phase transition point for reception timestamps t2/t4 (ps)
 
@@ -1656,19 +1656,19 @@ endchoice
 
 config PORT10_INST01_EGRESS_LATENCY
     int "timestampCorrectionPortDS.egressLatency (ps)"
-    default 238848
+    default 235514
  help
 	 Defines the transmission constant delay (ps)
 
 config PORT10_INST01_INGRESS_LATENCY
     int "timestampCorrectionPortDS.ingressLatency (ps)"
-    default 278678
+    default 284550
  help
 	 Defines the reception constant delay (ps)
 
 config PORT10_INST01_T24P_TRANS_POINT
     int "timestampCorrectionPortDS.t24p_trans_point (ps)"
-    default 15100
+    default 14000
  help
 	 Defines the phase transition point for reception timestamps t2/t4 (ps)
 
@@ -1827,19 +1827,19 @@ endchoice
 
 config PORT11_INST01_EGRESS_LATENCY
     int "timestampCorrectionPortDS.egressLatency (ps)"
-    default 238294
+    default 234913
  help
 	 Defines the transmission constant delay (ps)
 
 config PORT11_INST01_INGRESS_LATENCY
     int "timestampCorrectionPortDS.ingressLatency (ps)"
-    default 279326
+    default 284763
  help
 	 Defines the reception constant delay (ps)
 
 config PORT11_INST01_T24P_TRANS_POINT
     int "timestampCorrectionPortDS.t24p_trans_point (ps)"
-    default 14500
+    default 14250
  help
 	 Defines the phase transition point for reception timestamps t2/t4 (ps)
 
@@ -1998,19 +1998,19 @@ endchoice
 
 config PORT12_INST01_EGRESS_LATENCY
     int "timestampCorrectionPortDS.egressLatency (ps)"
-    default 239243
+    default 235674
  help
 	 Defines the transmission constant delay (ps)
 
 config PORT12_INST01_INGRESS_LATENCY
     int "timestampCorrectionPortDS.ingressLatency (ps)"
-    default 278867
+    default 284238
  help
 	 Defines the reception constant delay (ps)
 
 config PORT12_INST01_T24P_TRANS_POINT
     int "timestampCorrectionPortDS.t24p_trans_point (ps)"
-    default 9850
+    default 14700
  help
 	 Defines the phase transition point for reception timestamps t2/t4 (ps)
 
@@ -2169,19 +2169,19 @@ endchoice
 
 config PORT13_INST01_EGRESS_LATENCY
     int "timestampCorrectionPortDS.egressLatency (ps)"
-    default 225920
+    default 222607
  help
 	 Defines the transmission constant delay (ps)
 
 config PORT13_INST01_INGRESS_LATENCY
     int "timestampCorrectionPortDS.ingressLatency (ps)"
-    default 231130
+    default 236849
  help
 	 Defines the reception constant delay (ps)
 
 config PORT13_INST01_T24P_TRANS_POINT
     int "timestampCorrectionPortDS.t24p_trans_point (ps)"
-    default 14150
+    default 14250
  help
 	 Defines the phase transition point for reception timestamps t2/t4 (ps)
 
@@ -2340,19 +2340,19 @@ endchoice
 
 config PORT14_INST01_EGRESS_LATENCY
     int "timestampCorrectionPortDS.egressLatency (ps)"
-    default 226071
+    default 222722
  help
 	 Defines the transmission constant delay (ps)
 
 config PORT14_INST01_INGRESS_LATENCY
     int "timestampCorrectionPortDS.ingressLatency (ps)"
-    default 233579
+    default 237722
  help
 	 Defines the reception constant delay (ps)
 
 config PORT14_INST01_T24P_TRANS_POINT
     int "timestampCorrectionPortDS.t24p_trans_point (ps)"
-    default 11950
+    default 13550
  help
 	 Defines the phase transition point for reception timestamps t2/t4 (ps)
 
@@ -2511,19 +2511,19 @@ endchoice
 
 config PORT15_INST01_EGRESS_LATENCY
     int "timestampCorrectionPortDS.egressLatency (ps)"
-    default 226329
+    default 223038
  help
 	 Defines the transmission constant delay (ps)
 
 config PORT15_INST01_INGRESS_LATENCY
     int "timestampCorrectionPortDS.ingressLatency (ps)"
-    default 233041
+    default 236992
  help
 	 Defines the reception constant delay (ps)
 
 config PORT15_INST01_T24P_TRANS_POINT
     int "timestampCorrectionPortDS.t24p_trans_point (ps)"
-    default 12900
+    default 14650
  help
 	 Defines the phase transition point for reception timestamps t2/t4 (ps)
 
@@ -2682,19 +2682,19 @@ endchoice
 
 config PORT16_INST01_EGRESS_LATENCY
     int "timestampCorrectionPortDS.egressLatency (ps)"
-    default 226467
+    default 223179
  help
 	 Defines the transmission constant delay (ps)
 
 config PORT16_INST01_INGRESS_LATENCY
     int "timestampCorrectionPortDS.ingressLatency (ps)"
-    default 232311
+    default 236321
  help
 	 Defines the reception constant delay (ps)
 
 config PORT16_INST01_T24P_TRANS_POINT
     int "timestampCorrectionPortDS.t24p_trans_point (ps)"
-    default 13800
+    default 15400
  help
 	 Defines the phase transition point for reception timestamps t2/t4 (ps)
 
@@ -2853,19 +2853,19 @@ endchoice
 
 config PORT17_INST01_EGRESS_LATENCY
     int "timestampCorrectionPortDS.egressLatency (ps)"
-    default 226596
+    default 223319
  help
 	 Defines the transmission constant delay (ps)
 
 config PORT17_INST01_INGRESS_LATENCY
     int "timestampCorrectionPortDS.ingressLatency (ps)"
-    default 230376
+    default 235603
  help
 	 Defines the reception constant delay (ps)
 
 config PORT17_INST01_T24P_TRANS_POINT
     int "timestampCorrectionPortDS.t24p_trans_point (ps)"
-    default 14200
+    default 14600
  help
 	 Defines the phase transition point for reception timestamps t2/t4 (ps)
 
@@ -3024,19 +3024,19 @@ endchoice
 
 config PORT18_INST01_EGRESS_LATENCY
     int "timestampCorrectionPortDS.egressLatency (ps)"
-    default 226835
+    default 223534
  help
 	 Defines the transmission constant delay (ps)
 
 config PORT18_INST01_INGRESS_LATENCY
     int "timestampCorrectionPortDS.ingressLatency (ps)"
-    default 230323
+    default 236102
  help
 	 Defines the reception constant delay (ps)
 
 config PORT18_INST01_T24P_TRANS_POINT
     int "timestampCorrectionPortDS.t24p_trans_point (ps)"
-    default 14350
+    default 14550
  help
 	 Defines the phase transition point for reception timestamps t2/t4 (ps)
 
