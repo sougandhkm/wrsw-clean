@@ -984,7 +984,7 @@ config WRSAUXCLK_DUTY
 
 config WRSAUXCLK_CSHIFT
 	string "Coarse shift of the generated clock signal"
-	default "36"
+	default "30"
 	help
 	  --cshift parameter of wrs_auxclk
 	  Coarse shift (granularity 2ns) of the generated clock signal. This
