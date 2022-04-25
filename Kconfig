@@ -997,7 +997,7 @@ config WRSAUXCLK_CSHIFT
 
 config WRSAUXCLK_SIGDEL
 	string "Signal delay of the generated clock signal"
-	default "0"
+	default "5"
 	help
 	  --sigdel parameter of wrs_auxclk
 	  Clock signal generated from the FPGA is cleaned by a discrete
