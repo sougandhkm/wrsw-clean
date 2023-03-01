@@ -1,0 +1,19 @@
+{
+    "files.associations": {
+        "typeinfo": "c",
+        "stdio.h": "c",
+        "*.tcc": "c",
+        "bitset": "c",
+        "optional": "c",
+        "functional": "c",
+        "random": "c",
+        "fstream": "c",
+        "istream": "c",
+        "ostream": "c",
+        "sstream": "c",
+        "streambuf": "c"
+    },
+    "search.useIgnoreFiles": false,
+    "search.useGlobalIgnoreFiles": false,
+    "search.useParentIgnoreFiles": true
+}

@@ -14,8 +14,8 @@ wrs_echo "--- PTP daemon (ppsi repository as a submodule)"
 
 # checkout, in case the user didn't do that
 cd ${WRS_BASE_DIR}/..
-git submodule init -q
-git submodule update -q
+#git submodule init -q
+#git submodule update -q
 cd userspace/ppsi
 make clean
 

@@ -375,7 +375,7 @@ declare -A inst_dotc_ppsi_key_mapping='(\
 [PROTOCOL_RAW]="proto raw" [PROTOCOL_UDP_IPV4]="proto udp" \
 [MECHANISM_E2E]="mechanism e2e" [MECHANISM_P2P]="mechanism p2p" \
 [PROFILE_PTP]="profile ptp" [PROFILE_WR]="profile wr" [PROFILE_HA]="profile ha" [PROFILE_CUSTOM]="profile custom" \
-[DESIRADE_STATE_MASTER]="desiredState master" [DESIRADE_STATE_SLAVE]="desiredState slave" [DESIRADE_STATE_PASSIVE]="desiredState passive" \
+[DESIRADE_STATE_TIMESCALESLAVE]="desiredState timescaleslave" [DESIRADE_STATE_MASTER]="desiredState master" [DESIRADE_STATE_SLAVE]="desiredState slave" [DESIRADE_STATE_PASSIVE]="desiredState passive" \
 [ANNOUNCE_INTERVAL]="logAnnounceInterval" [ANNOUNCE_RECEIPT_TIMEOUT]="announceReceiptTimeout" \
 [SYNC_INTERVAL]="logSyncInterval" \
 [MIN_DELAY_REQ_INTERVAL]="logMinDelayReqInterval" [MIN_PDELAY_REQ_INTERVAL]="logMinPDelayReqInterval" \

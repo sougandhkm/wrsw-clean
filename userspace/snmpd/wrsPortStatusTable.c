@@ -292,11 +292,16 @@ time_t wrsPortStatusTable_data_fill(unsigned int *n_rows)
 								// MASTER
 								configuredMode=WRS_PORT_STATUS_CONFIGURED_MODE_MASTER;
 							} else if ( (ppsi_defaultDS->externalPortConfigurationEnabled &&
-								  ppi->externalPortConfigurationPortDS.desiredState==PPS_SLAVE)
+							ppi->externalPortConfigurationPortDS.desiredState==PPS_SLAVE)
 								|| ppsi_defaultDS->slaveOnly) {
 								// SLAVE
 								configuredMode=WRS_PORT_STATUS_CONFIGURED_MODE_SLAVE;
-							} else if ( !ppsi_defaultDS->externalPortConfigurationEnabled &&
+							} else if ( (ppsi_defaultDS->externalPortConfigurationEnabled &&
+							(ppi->externalPortConfigurationPortDS.desiredState==PPS_TIMESCALE_SLAVE ))
+								|| ppsi_defaultDS->slaveOnly) {
+								// SLAVE
+								configuredMode=WRS_PORT_STATUS_CONFIGURED_MODE_SLAVE;
+							}else if ( !ppsi_defaultDS->externalPortConfigurationEnabled &&
 									!portDS->masterOnly &&
 									!ppsi_defaultDS->slaveOnly ) {
 								// AUTO

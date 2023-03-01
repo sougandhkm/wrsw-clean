@@ -153,4 +153,6 @@ wrs_build_step    09-wrs-userspace       wrs_build_userspace
 wrs_build_step    10-wrs-gateware        wrs_build_gateware
 wrs_build_step    11-wrap-rootfs         wrs_build_wraprootfs
 
+
 wrs_echo "Complete build succeeded, apparently"
+cp wrs-firmware.tar /home/vagrant/white_rabbit/wrs-firmware.tar

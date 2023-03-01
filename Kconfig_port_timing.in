@@ -258,9 +258,9 @@ endchoice
 choice
     prompt "Desired state"
     depends on PTP_OPT_EXT_PORT_CONFIG_ENABLED
-    default PORT02_INST01_DESIRADE_STATE_MASTER
-    config PORT02_INST01_DESIRADE_STATE_MASTER
-        bool "Master"
+    default PORT02_INST01_DESIRADE_STATE_TIMESCALESLAVE
+    config PORT02_INST01_DESIRADE_STATE_TIMESCALESLAVE
+        bool "Timescaleslave"
     config PORT02_INST01_DESIRADE_STATE_SLAVE
         bool "Slave"
     config PORT02_INST01_DESIRADE_STATE_PASSIVE

@@ -569,6 +569,7 @@ static struct desired_state_t{
 	{ "passive", PPS_PASSIVE},
 	{ "uncalibrated", PPS_UNCALIBRATED},
 	{ "slave", PPS_SLAVE},
+	{ "timescale_slave", PPS_TIMESCALE_SLAVE},
 	{}
 };
 

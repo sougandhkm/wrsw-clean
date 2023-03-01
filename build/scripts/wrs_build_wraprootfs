@@ -117,7 +117,7 @@ version=$(cd $WRS_BASE_DIR; git describe --always --dirty)
 # 'wr-switch-sw-unof-'
 name=$(echo $version | sed  '/^wr-switch-sw-/! s/.*/wr-switch-sw-unof-\0/')
 # add date and suffix
-name="${name}-$(date +%Y%m%d)_binaries.tar"
+name="wrs-firmware.tar"
 
 wrs_echo "--- Packing into $name";
 (cd "$WRS_OUTPUT_DIR/images" && tar cf wrs-firmware.tar  $packlist) || exit 1
