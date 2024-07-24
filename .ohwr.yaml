@@ -1,0 +1,13 @@
+---
+# SPDX-FileCopyrightText: 2024 CERN (home.cern)
+#
+# SPDX-License-Identifier: BSD-3-Clause
+
+version: '1.0.0'
+name: 'White Rabbit Switch - Software'
+description: 'https://ohwr.org/project/wr-switch-sw/wikis/home'
+website: 'https://ohwr.org/project/wr-switch-sw'
+documentation: 'https://ohwr.org/project/wr-switch-sw/wikis'
+issues: 'https://ohwr.org/project/wr-switch-sw/issues'
+newsfeed: 'https://ohwr.org/project/wr-switch-sw/wikis/news'
+
