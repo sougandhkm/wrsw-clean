@@ -77,9 +77,11 @@ int rts_set_mode(int mode)
 
 int rts_ptracker_set_average_samples(int channel, int avg_samples)
 {
+	printf("Setting navg @ port %d (wri%d) navg = %d\n,", channel + 1, channel + 1,avg_samples);
+
 	int rval;
 	int ret = minipc_call(client, RTS_TIMEOUT,
-			      &rtipc_rts_set_average_samples_struct, &rval, avg_samples);
+			      &rtipc_rts_set_average_samples_struct, &rval,channel, avg_samples);
 
 	if (ret < 0)
 		return ret;
@@ -121,6 +123,18 @@ int rts_enable_ptracker(int channel, int enable)
 	int rval;
 	int ret = minipc_call(client, RTS_TIMEOUT,
 			      &rtipc_rts_enable_ptracker_struct, &rval,
+			      channel, enable);
+
+	if (ret < 0)
+		return ret;
+
+	return rval;
+}
+int rts_enable_ptracker_log(int channel, int enable)
+{
+	int rval;
+	int ret = minipc_call(client, RTS_TIMEOUT,
+			      &rtipc_rts_enable_ptracker_rge_struct, &rval,
 			      channel, enable);
 
 	if (ret < 0)

@@ -1,3 +1,3 @@
 [submodule "userspace/ppsi"]
 	path = userspace/ppsi
-	url = ../ppsi.git
+	url = https://wrqdnl@bitbucket.org/white_rabbit_qdnl/ppsi.git
