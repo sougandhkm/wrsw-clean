@@ -116,7 +116,8 @@ int rts_lock_channel(int channel, int priority);
 
 /* Enabled/disables phase tracking on a particular port */
 int rts_enable_ptracker(int channel, int enable);
-
+/* Enabled/disables phase tracking on a particular port + some extra stuf*/
+int rts_enable_ptracker_log(int channel, int enable);
 /* Sets number of raw phase samples the DMTD uses to average to obtain the final phase value.
    Lower number = faster measurements (useful during calibration). */
 int rts_ptracker_set_average_samples(int channel, int avg_samples);
@@ -193,6 +194,15 @@ static struct minipc_pd rtipc_rts_set_average_samples_struct = {
 	},
 };
 
+static struct minipc_pd rtipc_rts_enable_ptracker_rge_struct = {
+	.name = "hhhh",
+	.retval = MINIPC_ARG_ENCODE(MINIPC_ATYPE_INT, int),
+	.args = {
+	    MINIPC_ARG_ENCODE(MINIPC_ATYPE_INT, int ),
+	    MINIPC_ARG_ENCODE(MINIPC_ATYPE_INT, int ),
+	    MINIPC_ARG_END
+	},
+};
 
 #endif
 

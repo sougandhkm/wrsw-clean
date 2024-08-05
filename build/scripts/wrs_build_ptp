@@ -14,8 +14,8 @@ wrs_echo "--- PTP daemon (ppsi repository as a submodule)"
 
 # checkout, in case the user didn't do that
 cd ${WRS_BASE_DIR}/..
-git submodule init -q
-git submodule update -q
+# git submodule init -q
+# git submodule update -q
 cd userspace/ppsi
 make clean
 
@@ -31,5 +31,5 @@ make CROSS_COMPILE=$CROSS_COMPILE || wrs_die "Failure building PPSi"
 make -C tools  CROSS_COMPILE=$CROSS_COMPILE || \
     wrs_die "Failure building PPSi tools"
 install -d "$WRS_OUTPUT_DIR/images/wr/bin"
-install ppsi tools/ptpdump "$WRS_OUTPUT_DIR/images/wr/bin"
+install ppsi tools/ptpdump tools/ppsi_conf "$WRS_OUTPUT_DIR/images/wr/bin"
 

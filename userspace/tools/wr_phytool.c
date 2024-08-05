@@ -1263,6 +1263,36 @@ void gtx_phase_test(int ep, int argc, char *argv[])
 		return;
 }
 
+void ts_comand(int ep, int argc,char *argv[])
+{	
+	struct rts_pll_state pstate;
+	int i;
+
+	assert(hal_shm_init() == 0); /* to get hal_nports_local */
+
+	if(	rts_connect(NULL) < 0)
+	{
+		printf("Can't connect to the RT subsys\n");
+		exit(1);
+	}
+
+	rts_get_state(&pstate);
+	
+	if (!strcmp(argv[3], "track"))
+	{
+		printf("Enabling phase logging @ port %d (wri%d)\n", ep + 1, ep + 1);
+		rts_enable_ptracker_log(ep, 1);
+	}
+	else if (!strcmp(argv[3], "set_navg"))
+	{
+		int navg = atoi(argv[4]);
+
+		printf("Setting navg @ port %d (wri%d) navg =  %d\n,", ep + 1, ep + 1,navg);
+		rts_ptracker_set_average_samples(ep, navg);
+	}
+
+}
+
 void rt_command(int ep, int argc, char *argv[])
 {
 /* ep is 0..17 */
@@ -1316,6 +1346,10 @@ void rt_command(int ep, int argc, char *argv[])
 	{
 		printf("Enabling ptracker @ port %d (wri%d)\n", ep + 1, ep + 1);
 		rts_enable_ptracker(ep, 1);
+	}else if (!strcmp(argv[3], "trackrge"))
+	{
+		printf("Enabling ptracker @ port %d (wri%d)\n", ep + 1, ep + 1);
+		rts_enable_ptracker_log(ep, 1);
 	}
 }
 
@@ -1385,6 +1419,12 @@ struct {
 	"",
 	"RT subsystem command [show,lock,[gm,fr,ds],track]",
 	rt_command},
+	{
+	"ts",
+	"",
+	"Timescale comand usage ts ep [track ,set_navg [avg_samples]]",
+	ts_comand
+	},
 	{NULL}
 
 };
