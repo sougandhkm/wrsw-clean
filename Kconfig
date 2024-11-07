@@ -452,7 +452,7 @@ config WRS_LOG_LEVEL_RTU
 
 config WRS_LOG_PTP
 	string "Logging directions for the PTP server (ppsi)"
-	default "daemon.info"
+	default "/tmp/ptp.log"
 	help
 	  The string can be a pathname (e.g. /dev/kmsg) or a <facility>.<level>
 	  spefification like "daemon.debug". An empty strings is used
@@ -464,7 +464,7 @@ config WRS_LOG_PTP
 
 config WRS_LOG_LEVEL_PTP
 	string "Logging verbosity level for the PTP server (ppsi)"
-	default ""
+	default "3333333"
 	help
 	  Specify verbosity of PPSi daemon as a string. This string will be
 	  passed to the PPSI after "-d" parameter. Please refer to the PPSI's
