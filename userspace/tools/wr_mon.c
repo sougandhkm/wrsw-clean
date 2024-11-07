@@ -126,7 +126,7 @@ static pp_instance_ptr_t instances[PP_MAX_LINKS];
 static struct inst_servo_t servos[MAX_INST_SERVO];
 
 int mode = SHOW_GUI;
-
+Boolean showCal = 0;
 static struct minipc_ch *ptp_ch;
 
 static struct wrs_shm_head *hal_head;
@@ -310,6 +310,7 @@ void help(char *prgname)
 		"  -a   show all (same as -i -m -s -o -e -t options)\n"
 		"  -b   black and white output\n"
 		"  -w   web interface mode\n"
+		"  -c   show calibration values on GUI"
 		"  -H <dir> Open shmem dumps from the given directory\n"
 		"\n"
 		"During execution the user can enter 'q' to exit the program\n"
@@ -395,6 +396,9 @@ int read_servo(void){
 				if ( !(ppsi_servo = wrs_shm_follow(ppsi_head, ppi->servo)) )
 						break;
 				memcpy(&servo->servo_snapshot, ppsi_servo, sizeof(struct pp_servo));
+				
+				servo->meanDelay=pp_time_to_interval(&servo->servo_snapshot.meanDelay);   /* currentDS.meanDelay */
+				servo->offsetFromMaster=pp_time_to_interval(&servo->servo_snapshot.offsetFromMaster);/* currentDS.offsetFromMaster */
 
 				/* Copy extension servo data */
 				if ( servo->servo_ext_snapshot ) {
@@ -412,8 +416,8 @@ int read_servo(void){
 					if ( !(currenDS = wrs_shm_follow(ppsi_head, ppg->currentDS) ) )
 							break;
 
-					servo->offsetFromMaster=currenDS->offsetFromMaster; /* currentDS.offsetFromMaster */
-					servo->meanDelay=currenDS->meanDelay;    /* currentDS.meanDelay */
+					//servo->offsetFromMaster=currenDS->offsetFromMaster; /* currentDS.offsetFromMaster */
+					//servo->meanDelay=currenDS->meanDelay;    /* currentDS.meanDelay */
 				}
 				{
 					portDS_t *portDS;
@@ -569,6 +573,7 @@ static struct desired_state_t{
 	{ "passive", PPS_PASSIVE},
 	{ "uncalibrated", PPS_UNCALIBRATED},
 	{ "slave", PPS_SLAVE},
+	{ "timescale_slave", PPS_TIMESCALE_SLAVE},
 	{}
 };
 
@@ -835,7 +840,59 @@ void show_ports(int hal_alive, int ppsi_alive)
 			     "VLAN; U-UDP; R-Ethernet\n");
 	}
 }
+void show_calibration(){
+	if ((mode == SHOW_GUI) && (showCal )){
+	
+	term_cprintf(C_CYAN, "\n--------------------------- Calibration values ----------------------------\n");
 
+	TimeInterval delaysMM[MAX_INST_SERVO];
+	TimeInterval delaysMS[MAX_INST_SERVO];
+	TimeInterval offsetsFromMaster = 0;
+	int i;
+	int portCounter = 0;
+	for (i=0; i<MAX_INST_SERVO; i++){
+
+		if (servos[i].servo_snapshot.state == WRH_TRACK_PHASE){
+				offsetsFromMaster  += servos[i].offsetFromMaster;
+				delaysMM[0] = servos[i].servo_snapshot.delayMM.scaled_nsecs;
+				delaysMS[0] = servos[i].servo_snapshot.delayMS.scaled_nsecs;
+				portCounter = portCounter + 1;
+		}		
+		if (servos[i].servo_snapshot.state == WRH_MONITOR_PHASE){
+				offsetsFromMaster  += servos[i].offsetFromMaster;
+				delaysMM[1] = servos[i].servo_snapshot.delayMM.scaled_nsecs;
+				delaysMS[1] = servos[i].servo_snapshot.delayMS.scaled_nsecs;
+				portCounter = portCounter + 1;
+		}
+
+		if (portCounter ==2){
+			break;
+			}
+	}
+
+	if (portCounter !=2){
+			term_cprintf(C_RED,"Waiting for ports in MONITOR_PHASE and TRACK_PHASE states\n");
+			return;
+		}	
+	char buf[128];
+	float a = (float) -2*offsetsFromMaster + delaysMM[0] -delaysMM[1] -2*(delaysMS[0] - delaysMS[1]);
+	float b = (float) offsetsFromMaster - delaysMM[0] + delaysMS[0] -delaysMS[1] ;
+
+	float alpha1 = a/b;
+	term_cprintf(C_CYAN," | ");term_cprintf(C_BLUE,  "Port %s (active port) ",servos[0].ppi->cfg.iface_name);
+	term_cprintf(C_WHITE,"alpha: %s\n",gcvt(alpha1,10,buf)); 
+	// term_cprintf(C_WHITE,"delaysMM1: %s\n",timeIntervalToString(delaysMM[0],buf));
+	// term_cprintf(C_WHITE,"AdelaysMS1: %s\n",timeIntervalToString(delaysMS[0],buf));
+
+	b = (float) offsetsFromMaster + delaysMM[1] + delaysMS[0] -delaysMS[1] ;
+	alpha1 = a/b;
+	term_cprintf(C_CYAN," | ");term_cprintf(C_BLUE,  "Port %s (monitor port) ",servos[1].ppi->cfg.iface_name);
+	term_cprintf(C_WHITE,"alpha: %s\n",gcvt(alpha1,10,buf)); 
+	// term_cprintf(C_WHITE,"delaysMM2: %s\n",timeIntervalToString(delaysMM[1],buf));
+	// term_cprintf(C_WHITE,"AdelaysMS2: %s\n",timeIntervalToString(delaysMS[1],buf));
+	// term_cprintf(C_WHITE,"offsetFromMaster: %s\n",timeIntervalToString(offsetsFromMaster,buf));
+	}
+}
 void show_servo(struct inst_servo_t *servo, int alive)
 {
 
@@ -888,7 +945,7 @@ void show_servo(struct inst_servo_t *servo, int alive)
 		/* "tracking disabled" is just a testing tool */
 		if (wr_servo  && !wr_servo->tracking_enabled)
 			term_cprintf(C_RED, "Tracking forcibly disabled\n");
-		term_cprintf(C_CYAN, "\n +- Timing parameters ---------------------------------------------------------\n");
+		term_cprintf(C_CYAN, "\n +- Timing parameters RGE ------------------------------------------------------\n");
 
 		term_cprintf(C_CYAN," | ");term_cprintf(C_BLUE,  "meanDelay        : ");
 		term_cprintf(C_WHITE, "%16s nsec\n", timeIntervalToString(servo->meanDelay,buf) );
@@ -1099,6 +1156,7 @@ void show_all(void)
 
 	if (mode & SHOW_SERVO || mode == SHOW_GUI) {
 		show_servos(ppsi_alive);
+		show_calibration();
 	}
 
 	if (mode & (SHOW_TEMPERATURES | WEB_INTERFACE) || mode == SHOW_GUI) {
@@ -1143,13 +1201,17 @@ int main(int argc, char *argv[])
 
 	wrs_msg_init(argc, argv, LOG_USER);
 
-	while ((opt = getopt(argc, argv, "himsoetabwqvH:")) != -1) {
+	while ((opt = getopt(argc, argv, "himcsoetabwqvH:")) != -1) {
 		switch(opt)
 		{
 			case 'h':
 				help(argv[0]);
 			case 'i':
 				mode |= SHOW_WR_TIME;
+				break;
+			case 'c':
+				showCal = 1;
+				mode = SHOW_GUI;
 				break;
 			case 's':
 				mode |= SHOW_SLAVE_PORTS;
