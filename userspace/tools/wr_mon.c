@@ -42,7 +42,7 @@
 				SHOW_TEMPERATURES | SHOW_WR_TIME)
 
 
-#define MAX_INST_SERVO 2
+#define MAX_INST_SERVO 18
 struct inst_servo_t {
 	struct pp_instance * ppi;              /* pointer to the ppi instance */
 	int                  valid_servo_data; /* 1 means servo data are vaild */
