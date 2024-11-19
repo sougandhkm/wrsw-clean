@@ -226,6 +226,22 @@ static char *prot_detection_state_name[]={
 		"EXT_OFF" /* Protocol not detected */
 };
 
+static char * RGEtimeIntervalToString(TimeInterval time,char *buf) {
+	char sign = '';
+	int64_t nanos,picos;
+
+	if ( time<0) {
+		sign= '-';
+		time=-time;
+	} 
+
+	nanos = time >> TIME_INTERVAL_FRACBITS;
+	picos = (((time & TIME_INTERVAL_FRACMASK) * 1000) + TIME_INTERVAL_ROUNDING_VALUE ) >> TIME_INTERVAL_FRACBITS;
+	sprintf(buf,"%c" "%" PRId64 ".%03" PRId64,sign, nanos,picos);
+	return buf;
+}
+
+
 /* prototypes */
 int read_instances(void);
 
@@ -278,7 +294,7 @@ char *optimized_pp_time_toString(struct pp_time *pptime, char *buf ) {
 	if ( pptime->secs )
 		sprintf(buf,"%16s sec",timeToString(pptime,lbuf));
 	else
-		sprintf(buf,"%16s nsec",timeIntervalToString(pp_time_to_interval(pptime),lbuf));
+		sprintf(buf,"%16s nsec",RGEtimeIntervalToString(pp_time_to_interval(pptime),lbuf));
 	return buf;
 }
 
@@ -881,16 +897,16 @@ void show_calibration(){
 	float alpha1 = a/b;
 	term_cprintf(C_CYAN," | ");term_cprintf(C_BLUE,  "Port %s (active port) ",servos[0].ppi->cfg.iface_name);
 	term_cprintf(C_WHITE,"alpha: %s\n",gcvt(alpha1,10,buf)); 
-	// term_cprintf(C_WHITE,"delaysMM1: %s\n",timeIntervalToString(delaysMM[0],buf));
-	// term_cprintf(C_WHITE,"AdelaysMS1: %s\n",timeIntervalToString(delaysMS[0],buf));
+	// term_cprintf(C_WHITE,"delaysMM1: %s\n",RGEtimeIntervalToString(delaysMM[0],buf));
+	// term_cprintf(C_WHITE,"AdelaysMS1: %s\n",RGEtimeIntervalToString(delaysMS[0],buf));
 
 	b = (float) offsetsFromMaster + delaysMM[1] + delaysMS[0] -delaysMS[1] ;
 	alpha1 = a/b;
 	term_cprintf(C_CYAN," | ");term_cprintf(C_BLUE,  "Port %s (monitor port) ",servos[1].ppi->cfg.iface_name);
 	term_cprintf(C_WHITE,"alpha: %s\n",gcvt(alpha1,10,buf)); 
-	// term_cprintf(C_WHITE,"delaysMM2: %s\n",timeIntervalToString(delaysMM[1],buf));
-	// term_cprintf(C_WHITE,"AdelaysMS2: %s\n",timeIntervalToString(delaysMS[1],buf));
-	// term_cprintf(C_WHITE,"offsetFromMaster: %s\n",timeIntervalToString(offsetsFromMaster,buf));
+	// term_cprintf(C_WHITE,"delaysMM2: %s\n",RGEtimeIntervalToString(delaysMM[1],buf));
+	// term_cprintf(C_WHITE,"AdelaysMS2: %s\n",RGEtimeIntervalToString(delaysMS[1],buf));
+	// term_cprintf(C_WHITE,"offsetFromMaster: %s\n",RGEtimeIntervalToString(offsetsFromMaster,buf));
 	}
 }
 void show_servo(struct inst_servo_t *servo, int alive)
@@ -948,7 +964,7 @@ void show_servo(struct inst_servo_t *servo, int alive)
 		term_cprintf(C_CYAN, "\n +- Timing parameters RGE ------------------------------------------------------\n");
 
 		term_cprintf(C_CYAN," | ");term_cprintf(C_BLUE,  "meanDelay        : ");
-		term_cprintf(C_WHITE, "%16s nsec\n", timeIntervalToString(servo->meanDelay,buf) );
+		term_cprintf(C_WHITE, "%16s nsec\n", RGEtimeIntervalToString(servo->meanDelay,buf) );
 
 		term_cprintf(C_CYAN," | ");term_cprintf(C_BLUE,  "delayMS          : ");
 		term_cprintf(C_WHITE,"%s\n",optimized_pp_time_toString(&servo->servo_snapshot.delayMS,buf));
@@ -972,18 +988,18 @@ void show_servo(struct inst_servo_t *servo, int alive)
 
 
 		term_cprintf(C_CYAN," | ");term_cprintf(C_BLUE,  "delayAsymmetry   : ");
-		term_cprintf(C_WHITE, "%16s nsec\n",   timeIntervalToString(servo->delayAsymmetry,buf));
+		term_cprintf(C_WHITE, "%16s nsec\n",   RGEtimeIntervalToString(servo->delayAsymmetry,buf));
 		term_cprintf(C_CYAN," | ");term_cprintf(C_BLUE,  "delayCoefficient : ");
 		term_cprintf(C_WHITE, "%s", relativeDifferenceToString(servo->scaledDelayCoefficient,buf));
 		term_cprintf(C_BLUE,  " fpa : ");
 		term_cprintf(C_WHITE, "%lld",servo->scaledDelayCoefficient);
 		term_cprintf(C_WHITE, "\n");
 		term_cprintf(C_CYAN," | ");term_cprintf(C_BLUE,  "ingressLatency   : ");
-		term_cprintf(C_WHITE, "%16s nsec\n",   timeIntervalToString(servo->ingressLatency,buf));
+		term_cprintf(C_WHITE, "%16s nsec\n",   RGEtimeIntervalToString(servo->ingressLatency,buf));
 		term_cprintf(C_CYAN," | ");term_cprintf(C_BLUE,  "egressLatency    : ");
-		term_cprintf(C_WHITE, "%16s nsec\n",   timeIntervalToString(servo->egressLatency,buf));
+		term_cprintf(C_WHITE, "%16s nsec\n",   RGEtimeIntervalToString(servo->egressLatency,buf));
 		term_cprintf(C_CYAN," | ");term_cprintf(C_BLUE,  "semistaticLatency: ");
-		term_cprintf(C_WHITE, "%16s nsec\n",   timeIntervalToString(servo->semistaticLatency,buf));
+		term_cprintf(C_WHITE, "%16s nsec\n",   RGEtimeIntervalToString(servo->semistaticLatency,buf));
 
 		/*if (0) {
 			term_cprintf(C_BLUE, "Fiber asymmetry:   ");
@@ -992,7 +1008,7 @@ void show_servo(struct inst_servo_t *servo, int alive)
 		}*/
 
 		term_cprintf(C_CYAN," | ");term_cprintf(C_BLUE, "offsetFromMaster : ");
-		term_cprintf(C_WHITE, "%16s nsec\n", timeIntervalToString (servo->offsetFromMaster,buf));
+		term_cprintf(C_WHITE, "%16s nsec\n", RGEtimeIntervalToString (servo->offsetFromMaster,buf));
 
 		if ( wr_servo ) {
 			term_cprintf(C_CYAN," | ");term_cprintf(C_BLUE, "Phase setpoint   : ");
@@ -1041,7 +1057,7 @@ void show_servo(struct inst_servo_t *servo, int alive)
 		printf("sv:%d ", servo->servo_snapshot.flags & PP_SERVO_FLAG_VALID ? 1 : 0);
 		printf("ss:'%s' ", servo->servo_snapshot.servo_state_name);
 /*		printf("aux:");*/
-		printf("md:%s ", timeIntervalToString(servo->meanDelay,buf));
+		printf("md:%s ", RGEtimeIntervalToString(servo->meanDelay,buf));
 		printf("dms:%s ", timeToString(&servo->servo_snapshot.delayMS,buf));
 		if ( wr_servo ) {
 			int64_t crtt= wr_servo->delayMM_ps - pp_time_to_picos(&wr_servo_ext->delta_txm) -
@@ -1068,8 +1084,12 @@ void show_servo(struct inst_servo_t *servo, int alive)
 			printf("lock:%i ", l1e_servo->tracking_enabled);
 			printf("setp:%d ", l1e_servo->cur_setpoint_ps);
 		}
-		printf("asym:%s ", timeIntervalToString(servo->delayAsymmetry,buf));
-		printf("cko:%s ", timeIntervalToString(servo->offsetFromMaster,buf));
+		printf("asym:%s ", RGEtimeIntervalToString(servo->delayAsymmetry,buf));
+		struct pp_time t = {
+		.secs=0,
+		.scaled_nsecs=servo->offsetFromMaster,
+		};
+		printf("RGE cko:%s ", timeToString(&t,buf));
 /*		printf("hd:");*/
 /*		printf("md:");*/
 /*		printf("ad:");*/
