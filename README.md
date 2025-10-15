@@ -11,7 +11,7 @@ The wrs-build documentation, thus, is what you actually need to build
 all the stuff that goes into the switch, and program to internal flash
 memory.
 
-## Utility for time-scale applications
+## Utilities for time-scale applications
 
 
 
