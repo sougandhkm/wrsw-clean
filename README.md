@@ -12,7 +12,7 @@ all the stuff that goes into the switch, and program to internal flash
 memory.
 
 
-Modifications by Rodrigo and Sougandh
+##Modifications by Rodrigo and Sougandh
 
 This branch contains software enhancements to support **low-jitter White Rabbit switches**.
 
